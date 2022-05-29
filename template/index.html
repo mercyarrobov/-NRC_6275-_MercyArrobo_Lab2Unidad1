@@ -23,6 +23,12 @@
         color: rgb(5, 5, 56);
         font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
       }
+
+      #niv{
+          color: rgb(5, 5, 62);
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-size: 20px;
+      }
     </style>
   </head>
 
@@ -49,55 +55,50 @@
           <input
             type="email"
             class="form-control"
-            id="usr"
             placeholder="Ingrese el correo electronico"
             name="tareaC"
           />
+        </div><br>
+        <!--Controlador del nivel de prioridad -->
+        <div class="form-group">
+          <label id="niv">Nivel de prioridad de la tarea</label> <br><br>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="tareaP"
+          >
+            <option value="1">Alto</option>
+            <option value="2">Medio</option>
+            <option value="3">Bajo</option>
+          </select>
+          <br />
+          <button type="submit" class="btn btn-primary">
+            Agregar a la tarea</button
+          ><br /><br>
         </div>
       </form>
 
-      <!--nivel de prioridad -->
+	  <!--Controlador de eliminar tarea-->
       <div class="form-group">
-        <label>Nivel de prioridad de la tarea</label> <br />
-        <select
-          class="form-select"
-          aria-label="Default select example"
-          name="tareaP"
-        >
-          <option value="1">Alto</option>
-          <option value="2">Medio</option>
-          <option value="3">Bajo</option>
-        </select>
-        <br />
-         <!--Botón de eliminar tarea-->
-        <button type="submit" class="btn btn-primary">
-          Agregar a la tarea</button
-        ><br /><br>
+        <form action="{{ url_for('borrar') }}" method="post">
+          <input
+            type="text"
+            name="tareaB"
+            class="form-control"
+            placeholder="Ingrese la tarea que desea borrar"
+          /><br />
+          <button type="submit" class="btn btn-primary">Borrar</button><br><br>
+        </form>
       </div>
-    </form>
-	    <!--Controlador de eliminar tarea-->
-        <div class="form-group">
-            <form action="{{ url_for('borrar') }}" method="post">
-              <input
-                type="text"
-                name="tareaB"
-                class="form-control"
-                id="usr"
-                placeholder="Ingrese la tarea para borrar"
-              /><br />
-              <button type="submit" class="btn btn-primary">Borrar</button><br>
-            </form>
-          </div>
-          
-          <!--Template con la lista-->
-          {% block body %}
-          <ul class="list-group">
-            {% for tarea in lista %}
-            <li class="list-group-item" id="lista">{{ tarea }}</li>
-            {% endfor %}
-          </ul>
-          {% endblock %}
-        </div>
+	  
+	  <!--Template con la lista-->
+      {% block body %}
+      <ul class="list-group">
+        {% for tarea in lista %}
+        <li class="list-group-item" id="lista">{{ tarea }}</li>
+        {% endfor %}
+      </ul>
+      {% endblock %}
     </div>
   </body>
 </html>
